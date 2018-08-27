@@ -1,17 +1,16 @@
-# Welcome to MkDocs
+# Como utilizar
 
-For full documentation visit [mkdocs.org](https://mkdocs.org).
+1. Seu professor irá lhe fornecer um usuário e uma senha.
+2. Vá ao site indicado por ele/ela e faça login
+3. Na coluna esquerda é possível escolher qual Desafio deseja enviar.
+4. Escolha o desafio, clique em **Choose File** e envie seu arquivo python (.py).
 
-## Commands
+O arquivo deve conter apenas uma função com o nome do desafio escolhido. Exemplo:
+para o Desafio1, seu arquivo deve ser:
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+```python
+def desafio1(n):
+	...
+```
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+Clique em **Enviar**. Logo abaixo aparecerão mensagens de status e o que fazer em caso de erro. Se não houver erro, parabéns!
