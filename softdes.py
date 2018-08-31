@@ -5,7 +5,7 @@ Created on Wed Jun 28 09:00:39 2017
 @author: rauli
 """
 
-from flask import Flask, request, jsonify, abort, make_response, session, render_template
+from flask import Flask, request, jsonify, abort, make_response, session, render_template, redirect
 from flask_httpauth import HTTPBasicAuth
 from datetime import datetime
 import sqlite3
@@ -16,28 +16,28 @@ DBNAME = './quiz.db'
 
 def lambda_handler(event, context):
     try:
-        import json 
+        import json
         import numbers
-        
+
         def not_equals(first, second):
             if isinstance(first, numbers.Number) and isinstance(second, numbers.Number):
                 return abs(first - second) > 1e-3
             return first != second
-        
+
         # TODO implement
         ndes = int(event['ndes'])
         code = event['code']
         args = event['args']
         resp = event['resp']
-        diag = event['diag'] 
+        diag = event['diag']
         exec(code, locals())
-        
-        
+
+
         test = []
         for index, arg in enumerate(args):
             if not 'desafio{0}'.format(ndes) in locals():
                 return "Nome da função inválido. Usar 'def desafio{0}(...)'".format(ndes)
-            
+
             if not_equals(eval('desafio{0}(*arg)'.format(ndes)), resp[index]):
                 test.append(diag[index])
 
@@ -55,6 +55,51 @@ def getQuizes(user):
         cursor.execute("SELECT id, numb from QUIZ".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     else:
         cursor.execute("SELECT id, numb from QUIZ where release < '{0}'".format(datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+    info = [reg for reg in cursor.fetchall()]
+    conn.close()
+    return info
+
+def getUsers(user):
+    if user != 'admin' and user != 'fabioja':
+        return []
+    conn = sqlite3.connect(DBNAME)
+    cursor = conn.cursor()
+    cursor.execute("SELECT user from USER")
+    info = [reg[0] for reg in cursor.fetchall()]
+    conn.close()
+    return info
+
+
+def getReportData(users, challenges):
+    all_user_quizzes = getAllUserQuiz()
+    users_data = {user: {c[1]: {'passed': False, 'submissions': 0} for c in challenges} for user in users}
+    print(users)
+    for userid, numb, _sent, _answer, result in all_user_quizzes:
+        user_data = users_data[userid]
+        quiz_data = user_data[numb]
+        quiz_data['submissions'] += 1
+        if result == 'OK!':
+            quiz_data['passed'] = True
+        user_data[numb] = quiz_data
+        users_data[userid] = user_data
+    for user in users_data.values():
+        for quiz_data in user.values():
+            if quiz_data['submissions'] == 0:
+                quiz_data['status'] = 'N/A'
+                quiz_data['class'] = 'table-danger'
+            elif quiz_data['passed']:
+                quiz_data['status'] = 'Passou'
+                quiz_data['class'] = 'table-success'
+            else:
+                quiz_data['status'] = 'Falhou'
+                quiz_data['class'] = 'table-warning'
+    return users_data
+
+
+def getAllUserQuiz():
+    conn = sqlite3.connect(DBNAME)
+    cursor = conn.cursor()
+    cursor.execute("SELECT userid,numb,sent,answer,result from USERQUIZ INNER JOIN QUIZ on QUIZ.id = USERQUIZ.quizid order by sent desc")
     info = [reg for reg in cursor.fetchall()]
     conn.close()
     return info
@@ -128,17 +173,17 @@ def main():
             p = 2
             return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
 
-        
+
         quiz = quiz[0]
         if sent > quiz[2]:
             msg = "Sorry... Prazo expirado!"
-        
+
         f = request.files['code']
         filename = './upload/{0}-{1}.py'.format(auth.username(), sent)
         f.save(filename)
         with open(filename,'r') as fp:
             answer = fp.read()
-        
+
         #lamb = boto3.client('lambda')
         args = {"ndes": id, "code": answer, "args": eval(quiz[4]), "resp": eval(quiz[5]), "diag": eval(quiz[6]) }
 
@@ -175,7 +220,7 @@ def main():
             return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
 
         answers = getUserQuiz(auth.username(), id)
-    
+
     return render_template('index.html', username=auth.username(), challenges=challenges, quiz=quiz[0], e=(sent > quiz[0][2]), answers=answers, p=p, msg=msg, expi = converteData(quiz[0][2]))
 
 @app.route('/pass', methods=['GET', 'POST'])
@@ -208,6 +253,18 @@ def change():
 @app.route('/logout')
 def logout():
     return render_template('index.html',p=2, msg="Logout com sucesso"), 401
+
+@app.route('/report')
+@auth.login_required
+def report():
+    user = auth.username()
+    if user != 'admin':
+        return redirect('/')
+    users = getUsers(user)
+    challenges=getQuizes(auth.username())
+    report_data = getReportData(users, challenges)
+    return render_template('index.html', p=4, msg='', report_data=report_data, challenges=challenges)
+
 
 @auth.get_password
 def get_password(username):
