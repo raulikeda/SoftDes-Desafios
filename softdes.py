@@ -5,14 +5,30 @@ Created on Wed Jun 28 09:00:39 2017
 @author: rauli
 """
 
+
+from datetime import datetime
+import hashlib
+import json
+import sqlite3
+
 from flask import Flask, request, jsonify, abort, make_response, session, render_template
 from flask_httpauth import HTTPBasicAuth
-from datetime import datetime
-import sqlite3
-import json
-import hashlib
+from flask_babel import Babel, _
+
 
 DBNAME = './quiz.db'
+
+auth = HTTPBasicAuth()
+
+app = Flask(__name__, static_url_path='')
+app.config.from_object('config.Config')
+
+babel = Babel(app)
+
+
+@babel.localeselector
+def get_locale():
+    return request.accept_languages.best_match(app.config['LOCALES'])
 
 def lambda_handler(event, context):
     try:
@@ -36,14 +52,14 @@ def lambda_handler(event, context):
         test = []
         for index, arg in enumerate(args):
             if not 'desafio{0}'.format(ndes) in locals():
-                return "Nome da função inválido. Usar 'def desafio{0}(...)'".format(ndes)
+                return _("Nome da função inválido. Usar") + "'def desafio{0}(...)'".format(ndes)
             
             if not_equals(eval('desafio{0}(*arg)'.format(ndes)), resp[index]):
                 test.append(diag[index])
 
         return " ".join(test)
     except:
-        return "Função inválida."
+        return _("Função inválida.")
 
 def converteData(orig):
     return orig[8:10]+'/'+orig[5:7]+'/'+orig[0:4]+' '+orig[11:13]+':'+orig[14:16]+':'+orig[17:]
@@ -107,11 +123,6 @@ def getInfo(user):
     else:
         return info[0]
 
-auth = HTTPBasicAuth()
-
-app = Flask(__name__, static_url_path='')
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?TX'
-
 @app.route('/', methods=['GET', 'POST'])
 @auth.login_required
 def main():
@@ -124,14 +135,14 @@ def main():
         id = request.args.get('ID')
         quiz = getQuiz(id, auth.username())
         if len(quiz) == 0:
-            msg = "Boa tentativa, mas não vai dar certo!"
+            msg = _("Boa tentativa, mas não vai dar certo!")
             p = 2
             return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
 
         
         quiz = quiz[0]
         if sent > quiz[2]:
-            msg = "Sorry... Prazo expirado!"
+            msg = _("Sorry... Prazo expirado!")
         
         f = request.files['code']
         filename = './upload/{0}-{1}.py'.format(auth.username(), sent)
@@ -148,9 +159,9 @@ def main():
         feedback = lambda_handler(args,'')
 
 
-        result = 'Erro'
+        result = _('Erro')
         if len(feedback) == 0:
-            feedback = 'Sem erros.'
+            feedback = _('Sem erros.')
             result = 'OK!'
 
         setUserQuiz(auth.username(), id, sent, feedback, result)
@@ -163,14 +174,14 @@ def main():
             id = 1
 
     if len(challenges) == 0:
-        msg = "Ainda não há desafios! Volte mais tarde."
+        msg = _("Ainda não há desafios! Volte mais tarde.")
         p = 2
         return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
     else:
         quiz = getQuiz(id, auth.username())
 
         if len(quiz) == 0:
-            msg = "Oops... Desafio invalido!"
+            msg = _("Oops... Desafio invalido!")
             p = 2
             return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
 
@@ -189,14 +200,14 @@ def change():
         p = 1
         msg = ''
         if nova != repet:
-            msg = 'As novas senhas nao batem'
+            msg = _('As novas senhas nao batem')
             p = 3
         elif getInfo(auth.username()) != hashlib.md5(velha.encode()).hexdigest():
-            msg = 'A senha antiga nao confere'
+            msg = _('A senha antiga nao confere')
             p = 3
         else:
             setInfo(hashlib.md5(nova.encode()).hexdigest(), auth.username())
-            msg = 'Senha alterada com sucesso'
+            msg = _('Senha alterada com sucesso')
             p = 3
     else:
         msg = ''
@@ -207,7 +218,8 @@ def change():
 
 @app.route('/logout')
 def logout():
-    return render_template('index.html',p=2, msg="Logout com sucesso"), 401
+    msg = _("Logout com sucesso")
+    return render_template('index.html',p=2, msg=msg), 401
 
 @auth.get_password
 def get_password(username):
