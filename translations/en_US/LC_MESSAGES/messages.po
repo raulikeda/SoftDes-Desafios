@@ -1,0 +1,120 @@
+# English (United States) translations for SoftDes-Desafios.
+# Copyright (C) 2018 ORGANIZATION
+# This file is distributed under the same license as the SoftDes-Desafios
+# project.
+# Gustavo Efeiche <gustavoe1@al.insper.edu.br>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version:  1.0.0\n"
+"Report-Msgid-Bugs-To: gustavoe1@al.insper.edu.br\n"
+"POT-Creation-Date: 2018-09-02 19:50-0300\n"
+"PO-Revision-Date: 2018-09-02 19:23-0300\n"
+"Last-Translator: Gustavo Efeiche <gustavoe1@al.insper.edu.br>\n"
+"Language: en_US\n"
+"Language-Team: en_US <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.6.0\n"
+
+#: softdes.py:55
+msgid "Nome da função inválido. Usar"
+msgstr "Invalid function name. Use"
+
+#: softdes.py:62
+msgid "Função inválida."
+msgstr "Invalid function."
+
+#: softdes.py:138
+msgid "Boa tentativa, mas não vai dar certo!"
+msgstr "Nice try, but it won't work"
+
+#: softdes.py:145
+msgid "Sorry... Prazo expirado!"
+msgstr "Sorry... Expired deadline!"
+
+#: softdes.py:162
+msgid "Erro"
+msgstr "Error"
+
+#: softdes.py:164
+msgid "Sem erros."
+msgstr "No errors."
+
+#: softdes.py:177
+msgid "Ainda não há desafios! Volte mais tarde."
+msgstr "There are no challenges yet! Come back later."
+
+#: softdes.py:184
+msgid "Oops... Desafio invalido!"
+msgstr "Oops... Invalid challenge!"
+
+#: softdes.py:203
+msgid "As novas senhas nao batem"
+msgstr "The passwords don't match"
+
+#: softdes.py:206
+msgid "A senha antiga nao confere"
+msgstr "The old password doesn't match"
+
+#: softdes.py:210
+msgid "Senha alterada com sucesso"
+msgstr "Password changed successfully"
+
+#: softdes.py:221
+msgid "Logout com sucesso"
+msgstr "Logout successful"
+
+#: templates/index.html:31
+msgid "Olá"
+msgstr "Hello"
+
+#: templates/index.html:31
+msgid "trocar senha"
+msgstr "change password"
+
+#: templates/index.html:50 templates/index.html:89
+msgid "Desafio"
+msgstr "Challenge"
+
+#: templates/index.html:67
+msgid "Trocar senha"
+msgstr "Change password"
+
+#: templates/index.html:74
+msgid "Senha Antiga"
+msgstr "Old password"
+
+#: templates/index.html:76
+msgid "Senha Nova"
+msgstr "New password"
+
+#: templates/index.html:78
+msgid "Repetir Senha Nova"
+msgstr "Repeat new password"
+
+#: templates/index.html:82 templates/index.html:109
+msgid "Enviar"
+msgstr "Submit"
+
+#: templates/index.html:94
+msgid "Prazo"
+msgstr "Deadline"
+
+#: templates/index.html:105
+msgid "Resposta"
+msgstr "Answer"
+
+#: templates/index.html:115
+msgid "Envios"
+msgstr "Submissions"
+
+#: templates/index.html:120
+msgid "Data"
+msgstr "Date"
+
+#: templates/index.html:122
+msgid "Resultado"
+msgstr "Result"

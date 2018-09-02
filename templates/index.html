@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,7 +28,7 @@
 		  {% if username %}
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="./pass">Olá {{ username }} [trocar senha]<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="./pass">{{ _('Olá') }} {{ username }} [{{ _('trocar senha') }}]<span class="sr-only">(current)</span></a>
             </li>
           </ul>
           <form class="form-inline mt-2 mt-md-0" action="./logout">
@@ -48,7 +47,7 @@
 		    <!-- menu -->
 			{% for e in challenges %}
 			<li class="nav-item">
-              <a class="nav-link" href="./?ID={{ e[0] }}">Desafio {{ e[1] }}</a>
+              <a class="nav-link" href="./?ID={{ e[0] }}">{{ _('Desafio') }} {{ e[1] }}</a>
             </li>
 			{% endfor %}
           </ul>
@@ -65,34 +64,34 @@
 
 		  {% if p == 3%}
 
-		  <h3>Trocar senha</h3>
+		  <h3>{{ _('Trocar senha') }}</h3>
 		  <div class="row text-left">
             <div class="col-2 col-md-2 placeholder"></div>
             <div class="col-10 col-md-10 placeholder">
               <form action="./pass" method="POST">
                 <div class="form-row">
                   <div class="form-group col-md-8">
-                    <label for="velha">Senha Antiga:</label>
+                    <label for="velha">{{ _('Senha Antiga') }}:</label>
                     <input type="password" class="form-control-file" id="velha" name="old">
-					<label for="nova">Senha Nova:</label>
+					<label for="nova">{{ _('Senha Nova') }}:</label>
                     <input type="password" class="form-control-file" id="nova" name="new">
-					<label for="respeteco">Repetir Senha Nova:</label>
+					<label for="respeteco">{{ _('Repetir Senha Nova') }}:</label>
                     <input type="password" class="form-control-file" id="repeteco" name="again">
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">{{ _('Enviar') }}</button>
               </form>
             </div>
           </div>
 
 		  {% elif p == 1 %}
 
-          <h1>Desafio {{ quiz[7] }}</h1>
+          <h1>{{ _('Desafio') }} {{ quiz[7] }}</h1>
 
           <section class="row text-center placeholders">
             <div class="col-12 col-sm-12 placeholder">
               <h4>{{ quiz[3] }}</h4>
-              <div class="text-muted">Prazo: {{ expi }}</div>
+              <div class="text-muted">{{ _('Prazo') }}: {{ expi }}</div>
             </div>
             <div class="col-4 col-md-1 placeholder"></div>
           </section>
@@ -103,24 +102,24 @@
               <form action="?ID={{ quiz[0] }}" method="POST" enctype="multipart/form-data">
                 <div class="form-row">
                   <div class="form-group col-md-8">
-                    <label for="resposta">Resposta:</label>
+                    <label for="resposta">{{ _('Resposta') }}:</label>
                     <input type="file" class="form-control-file" id="resposta" name="code">
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" class="btn btn-primary">{{ _('Enviar') }}</button>
               </form>
 			{% endif %}
             </div>
           </div>
           <br /><br />
-          <h3>Envios:</h3>
+          <h3>{{ _('Envios') }}:</h3>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Data</th>
+                  <th>{{ _('Data') }}</th>
                   <th>Feedback</th>
-                  <th>Resultado</th>
+                  <th>{{ _('Resultado') }}</th>
                 </tr>
               </thead>
               <tbody>
