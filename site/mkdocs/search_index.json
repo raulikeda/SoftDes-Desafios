@@ -1,0 +1,29 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Documenta\u00e7\u00e3o de usu\u00e1rio\n\n\nInstru\u00e7\u00f5es de utiliza\u00e7\u00e3o\n\n\n\n\n\n\nEntrar no link disponibilizado pelo professor.\n\n\n\n\n\n\nUtilizar o usu\u00e1rio e a senha disponibilizados pelo professor.\n\n\n\n\n\n\n\u00c9 recomendado trocar sua senha padr\u00e3o, em \nTroque sua senha\n.\n\n\n\n\n\n\nPara entregar um desafio, fa\u00e7a upload do arquivo \n.py\n com o desafio proposto.\n\n\n\n\n\n\nClicar em \nEnviar\n.\n\n\n\n\n\n\nAjuda\n\n\nCaso tenha algum prolema, utilize os \nissues\n do github ou entre em contato com o professor.\n\n\nFAQ\n\n\n\n\nOnde troco minha senha?\n\n\n\n\nNo menu inicial ap\u00f3s entrar em sua conta, no canto superior clique em \nTroque sua senha\n\n\n\n\nOnde posso criar minha conta?\n\n\n\n\nN\u00e3o h\u00e1 espa\u00e7o para criar uma conta, elas s\u00e3o disponibilizadas pelo professor para cada aluno",
+            "title": "Home"
+        },
+        {
+            "location": "/#documentacao-de-usuario",
+            "text": "",
+            "title": "Documenta\u00e7\u00e3o de usu\u00e1rio"
+        },
+        {
+            "location": "/#instrucoes-de-utilizacao",
+            "text": "Entrar no link disponibilizado pelo professor.    Utilizar o usu\u00e1rio e a senha disponibilizados pelo professor.    \u00c9 recomendado trocar sua senha padr\u00e3o, em  Troque sua senha .    Para entregar um desafio, fa\u00e7a upload do arquivo  .py  com o desafio proposto.    Clicar em  Enviar .",
+            "title": "Instru\u00e7\u00f5es de utiliza\u00e7\u00e3o"
+        },
+        {
+            "location": "/#ajuda",
+            "text": "Caso tenha algum prolema, utilize os  issues  do github ou entre em contato com o professor.",
+            "title": "Ajuda"
+        },
+        {
+            "location": "/#faq",
+            "text": "Onde troco minha senha?   No menu inicial ap\u00f3s entrar em sua conta, no canto superior clique em  Troque sua senha   Onde posso criar minha conta?   N\u00e3o h\u00e1 espa\u00e7o para criar uma conta, elas s\u00e3o disponibilizadas pelo professor para cada aluno",
+            "title": "FAQ"
+        }
+    ]
+}

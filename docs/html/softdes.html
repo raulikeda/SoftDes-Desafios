@@ -1,0 +1,188 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>softdes module &#8212; SoftDes-Desafios  documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="desafio module" href="desafio.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-softdes">
+<span id="softdes-module"></span><h1>softdes module<a class="headerlink" href="#module-softdes" title="Permalink to this headline">¶</a></h1>
+<p>Created on Wed Jun 28 09:00:39 2017</p>
+<p>&#64;author: rauli</p>
+<dl class="function">
+<dt id="softdes.change">
+<code class="descclassname">softdes.</code><code class="descname">change</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.change" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change password route</p>
+<p>intput: None
+output: None</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.convert_date">
+<code class="descclassname">softdes.</code><code class="descname">convert_date</code><span class="sig-paren">(</span><em>orig</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#convert_date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.convert_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Coverts date to correct string format</p>
+<p>input: string with date
+output: date formatted</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.get_info">
+<code class="descclassname">softdes.</code><code class="descname">get_info</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#get_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.get_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets user information
+input: user Id
+output: password and type from user</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.get_password">
+<code class="descclassname">softdes.</code><code class="descname">get_password</code><span class="sig-paren">(</span><em>username</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#get_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.get_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets password with autheticaton</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.get_quiz">
+<code class="descclassname">softdes.</code><code class="descname">get_quiz</code><span class="sig-paren">(</span><em>_id</em>, <em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#get_quiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.get_quiz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets quiz from QUIZ table</p>
+<p>input: quiz ID and user ID
+output: quiz information</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.get_quizes">
+<code class="descclassname">softdes.</code><code class="descname">get_quizes</code><span class="sig-paren">(</span><em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#get_quizes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.get_quizes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get quizes from db</p>
+<p>input: dB user
+output: list of quizes</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.get_user_quiz">
+<code class="descclassname">softdes.</code><code class="descname">get_user_quiz</code><span class="sig-paren">(</span><em>userid</em>, <em>quizid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#get_user_quiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.get_user_quiz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get specific quiz from user</p>
+<p>input: userId and quizId
+output: list with one quiz from user</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.hash_pw">
+<code class="descclassname">softdes.</code><code class="descname">hash_pw</code><span class="sig-paren">(</span><em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#hash_pw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.hash_pw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hash password with authentication</p>
+<p>input: password
+output: hashed password</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.lambda_handler">
+<code class="descclassname">softdes.</code><code class="descname">lambda_handler</code><span class="sig-paren">(</span><em>event</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#lambda_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.lambda_handler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles code verification.</p>
+<p>input: dictionary with code info
+output: list with diagonstics</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.logout">
+<code class="descclassname">softdes.</code><code class="descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logout Route</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.main">
+<code class="descclassname">softdes.</code><code class="descname">main</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main func</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.set_info">
+<code class="descclassname">softdes.</code><code class="descname">set_info</code><span class="sig-paren">(</span><em>pwd</em>, <em>user</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#set_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.set_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates user’s password</p>
+<p>input: user ID and new password
+output: None</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="softdes.set_user_quiz">
+<code class="descclassname">softdes.</code><code class="descname">set_user_quiz</code><span class="sig-paren">(</span><em>userid</em>, <em>quizid</em>, <em>sent</em>, <em>answer</em>, <em>result</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/softdes.html#set_user_quiz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#softdes.set_user_quiz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds quiz to user on dB</p>
+<p>input: user and quiz information
+output: None</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="desafio.html" title="previous chapter">desafio module</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Author.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/softdes.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
