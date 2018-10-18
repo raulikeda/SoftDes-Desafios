@@ -1,0 +1,35 @@
+{% extends "logged_out_base.html" %}
+{% block main %}
+    <div class="container-fluid h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-12">
+                <div class="row justify-content-center align-self-center">
+                    <div class="col-4">
+                        {% if logging_out %}
+                        <div class="alert alert-warning" role="alert">
+                            Logout realizado com sucesso!
+                        </div>
+                        {% endif %}
+                        <h1 class="text-center">SoftDes 2018.2</h1>
+                        <div class="card border-danger">
+                            <div class="card-header bg-danger text-white">
+                                Login
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group">
+                                      <input type="text" class="form-control" id="username" placeholder="Usuário">
+                                    </div>
+                                    <div class="form-group">
+                                      <input type="password" class="form-control" id="password" placeholder="Senha">
+                                    </div>
+                                    <button type="submit" class="btn btn-danger float-right">Entrar</button>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

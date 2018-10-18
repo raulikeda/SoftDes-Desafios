@@ -125,8 +125,7 @@ def main():
         quiz = getQuiz(id, auth.username())
         if len(quiz) == 0:
             msg = "Boa tentativa, mas não vai dar certo!"
-            p = 2
-            return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
+            return render_template('desafio.html', username=auth.username(), challenges=challenges, msg=msg)
 
         
         quiz = quiz[0]
@@ -164,50 +163,43 @@ def main():
 
     if len(challenges) == 0:
         msg = "Ainda não há desafios! Volte mais tarde."
-        p = 2
-        return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
+        return render_template('desafio.html', username=auth.username(), challenges=challenges, msg=msg)
     else:
         quiz = getQuiz(id, auth.username())
 
         if len(quiz) == 0:
             msg = "Oops... Desafio invalido!"
-            p = 2
-            return render_template('index.html', username=auth.username(), challenges=challenges, p=p, msg=msg)
+            return render_template('desafio.html', username=auth.username(), challenges=challenges, msg=msg)
 
         answers = getUserQuiz(auth.username(), id)
-    
-    return render_template('index.html', username=auth.username(), challenges=challenges, quiz=quiz[0], e=(sent > quiz[0][2]), answers=answers, p=p, msg=msg, expi = converteData(quiz[0][2]))
+
+    return render_template('desafio.html', username=auth.username(), challenges=challenges, quiz=quiz[0], e=(sent > quiz[0][2]), answers=answers, msg=msg, expi=converteData(quiz[0][2]))
 
 @app.route('/pass', methods=['GET', 'POST'])
 @auth.login_required
 def change():
     if request.method == 'POST':
-        velha = request.form['old']
-        nova = request.form['new']
-        repet = request.form['again']
+        velha = request.form['old_pass']
+        nova = request.form['new_pass']
+        repet = request.form['confirm_pass']
 
-        p = 1
         msg = ''
         if nova != repet:
-            msg = 'As novas senhas nao batem'
-            p = 3
+            msg = 'As novas senhas não batem!'
         elif getInfo(auth.username()) != hashlib.md5(velha.encode()).hexdigest():
-            msg = 'A senha antiga nao confere'
-            p = 3
+            msg = 'A senha antiga não confere!'
         else:
             setInfo(hashlib.md5(nova.encode()).hexdigest(), auth.username())
             msg = 'Senha alterada com sucesso'
-            p = 3
     else:
         msg = ''
-        p = 3
 
-    return render_template('index.html', username=auth.username(), challenges=getQuizes(auth.username()), p=p, msg=msg)
+    return render_template('change_password.html', username=auth.username(), challenges=getQuizes(auth.username()), msg=msg)
 
 
 @app.route('/logout')
 def logout():
-    return render_template('index.html',p=2, msg="Logout com sucesso"), 401
+    return render_template('logout.html'), 401
 
 @auth.get_password
 def get_password(username):

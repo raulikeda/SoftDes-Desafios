@@ -1,0 +1,66 @@
+{% extends "logged_in_base.html" %}
+{% block main %}
+
+    <div class="card border-danger">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <h1>Desafio {{ quiz[7] }}</h1>
+                    <h6 class="text-muted">Prazo: {{ expi }}</h6>
+                </div>
+                <div class="col-9">
+                    <h5>{{ quiz[3] }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="row">
+        <div class="col">
+            <div class="row text-left justify-content-center">
+                <div class="col-6 placeholder">
+                {% if not e %}
+                    <form action="?ID={{ quiz[0] }}" method="POST" enctype="multipart/form-data">
+                        <h5>Resposta:</h3>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input name="code" type="file" class="custom-file-input" id="resposta" required>
+                                <label class="custom-file-label" for="resposta">Escolher arquivo...</label>
+                            </div>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-danger">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                {% endif %}
+                </div>
+            </div>
+
+            <br/>
+
+            <h3>Envios</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Data</th>
+                        <th>Feedback</th>
+                        <th>Resultado</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for ans in answers %}
+                    <tr>
+                        <td>{{ ans[0] }}</td>
+                        <td>{{ ans[1] }}</td>
+                        <td>{{ ans[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

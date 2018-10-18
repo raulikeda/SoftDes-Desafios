@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="./favicon.ico">
+
+        <title>SoftDes 2018.2</title>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link href="./css/bootstrap.min.css" rel="stylesheet">
+        <link href="dashboard.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-danger">
+                <a class="navbar-brand" href="./">SoftDes 2018.2</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                {% if username %}
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <span class="navbar-text text-white">Olá {{ username }}!</span>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown active">
+                            <div class="btn-group dropleft">
+                                <a class="btn btn-dark" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-cog text-white"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuButton">
+                                    <a class="dropdown-item" href="./pass">
+                                        <i class="fas fa-fw fa-lock"></i> Mudar senha
+                                    </a>
+                                    <form action="./logout">
+                                        <button class="btn btn-link dropdown-item" type="submit">
+                                            <i class="fas fa-fw fa-power-off"></i> Logout
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>    
+                    </ul>
+                {% endif %}
+                </div>
+            </nav>
+        </header>
+
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div class="col-2 bg-light h-100 px-0 bg-dark">
+                    {% if challenges %}
+                        <ul class="list-group list-group-flush">
+                            {% for e in challenges %}
+                                <a href="/?ID={{ e[0] }}" class="list-group-item list-group-item-action list-group-item-dark">
+                                    Desafio {{ e[1] }}
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        Ainda não há desafios disponíveis!
+                    {% endif %}
+                </div>
+                <div class="col-10 py-3" id="main">
+                    {% block main %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="./assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+        <script src="./assets/js/vendor/popper.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ['\\(','\\)'] ]
+            }
+            });
+        </script>
+        <script>
+            $('#resposta').on('change',function(){
+                var fileName = $(this).val().split("\\")[2];
+                console.log(fileName);
+                $(this).next('.custom-file-label').html(fileName);
+            })
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML"></script>
+    </body>
+</html>
