@@ -22,23 +22,40 @@
             <div class="row text-left justify-content-center">
                 <div class="col-6 placeholder">
                 {% if not e %}
-                    <form action="?ID={{ quiz[0] }}" method="POST" enctype="multipart/form-data">
-                        <h5>Resposta:</h3>
+                    
+
+                
+                <form action="?ID={{ quiz[0] }}" method="POST" enctype="multipart/form-data">
+                        <h5>Selecione um arquivo:</h5>
                         <div class="input-group">
                             <div class="custom-file">
                                 <input name="code" type="file" class="custom-file-input" id="resposta" required>
                                 <label class="custom-file-label" for="resposta">Escolher arquivo...</label>
                             </div>
+                        </div>
+                    </form>
+
+                    <br/>
+
+                    <form action="?ID={{ quiz[0] }}" method="POST" enctype="multipart/form-data">
+                        <h5>Ou escreva seu código aqui:</h5>
+                        <!-- Code Mirror -->
+                        <textarea name="codetext" id="codeeditor"></textarea>
+
+                        <div class="input-group">
                             <div class="input-group-append">
+                                <br/><br/><br/>
                                 <button type="submit" class="btn btn-danger">Enviar</button>
                             </div>
                         </div>
                     </form>
+
                 {% endif %}
                 </div>
             </div>
 
             <br/>
+
 
             <h3>Envios</h3>
             <div class="table-responsive">
@@ -63,4 +80,15 @@
             </div>
         </div>
     </div>
+    <script>
+        // var editor = CodeMirror.fromTextArea(document.getElementById('codeeditor'));
+        var editor = CodeMirror.fromTextArea(document.getElementById("codeeditor"), {
+            mode: {name: "python",
+                version: 3,
+                singleLineStringErrors: false},
+            lineNumbers: true,
+            indentUnit: 4,
+            matchBrackets: true
+        });
+    </script>
 {% endblock %}
