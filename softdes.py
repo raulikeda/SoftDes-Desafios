@@ -132,11 +132,16 @@ def main():
         if sent > quiz[2]:
             msg = "Sorry... Prazo expirado!"
         
-        f = request.files['code']
-        filename = './upload/{0}-{1}.py'.format(auth.username(), sent)
-        f.save(filename)
-        with open(filename,'r') as fp:
-            answer = fp.read()
+        if request.files.get('code', False):
+            f = request.files['code']
+            filename = './upload/{0}-{1}.py'.format(auth.username(), sent)
+            f.save(filename)
+            with open(filename,'r') as fp:
+                answer = fp.read()
+        else:
+            answer = request.form['codetext']
+            print(answer)
+
         
         #lamb = boto3.client('lambda')
         args = {"ndes": id, "code": answer, "args": eval(quiz[4]), "resp": eval(quiz[5]), "diag": eval(quiz[6]) }
